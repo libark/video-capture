@@ -1,0 +1,51 @@
+[package]
+name = "video-capture"
+description = "video capture"
+homepage = "https://github.com/libark/video-capture"
+repository = "https://github.com/libark/video-capture"
+documentation = "https://docs.rs/video-capture"
+version = "0.0.0"
+authors = ["Zhou Wei <zhouwei@ehom.net>"]
+license = "MIT OR Apache-2.0"
+categories = ["multimedia::video"]
+keywords = ["camera", "capture"]
+edition = "2021"
+
+[target.'cfg(any(target_os = "macos", target_os = "ios"))'.dependencies]
+av-foundation = "0.3"
+
+[target.'cfg(target_os = "windows")'.dependencies.windows]
+version = "0.58"
+features = [
+    "Win32",
+    "Win32_Foundation",
+    "Win32_Media",
+    "Win32_Media_DirectShow",
+    "Win32_Media_MediaFoundation",
+    "Win32_System_Com"
+]
+
+[target.'cfg(target_family = "wasm")'.dependencies]
+wasm-bindgen = "0.2"
+web-time = "1.1"
+js-sys = "0.3"
+
+[target.'cfg(target_family = "wasm")'.dependencies.web-sys]
+version = "0.3"
+features = [
+    "ImageData",
+    "MediaDeviceInfo",
+    "MediaDeviceKind",
+    "MediaDevices",
+    "MediaStream",
+    "MediaStreamConstraints",
+    "MediaStreamTrack",
+    "MediaStreamTrackState",
+    "MediaTrackConstraints",
+    "MediaTrackSettings",
+    "MediaTrackSupportedConstraints",
+    "Navigator",
+]
+
+[target.'cfg(target_family = "wasm")'.dev-dependencies]
+console_error_panic_hook = "0.1"
